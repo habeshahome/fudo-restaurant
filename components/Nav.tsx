@@ -37,12 +37,6 @@ const Nav = () => {
                 <Link href="/#menu-section"> 
                     <a> Menu </a> 
                 </Link>
-                <Link href="/products"> 
-                    <a> Products </a> 
-                </Link>
-                <Link href="/checkout"> 
-                    <a> Checkout </a> 
-                </Link>
             </nav>
             
             <div className="flex justify-end space-x-8">
