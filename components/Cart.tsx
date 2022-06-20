@@ -52,7 +52,7 @@ const Cart = () => {
                     <h1> Cart </h1>
                 </div>
                 <div className="flex justify-center align-middle">
-                    <p> X </p>
+                    <p>  </p>
                 </div>
             </div>
             <div>
@@ -65,7 +65,7 @@ const Cart = () => {
                     <h3 className="font-medium"> Checkout </h3>
                 </div>
                 <div> 
-                   <h3> $ Total </h3>
+                   <h3> $ total </h3>
                 </div>
             </div>
             

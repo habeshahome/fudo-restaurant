@@ -17,7 +17,19 @@ const Nav = () => {
         //console.log(localStorage.getItem('numOfCartItems'))
         let localCartNum = (JSON.parse(localStorage.getItem('cart')) || 0)
         setNumOfCartItems(localCartNum.length)
-    })
+
+        const canvas = document.getElementById('fudo');
+        if (canvas) {
+            canvas.addEventListener(
+            'mousemove',
+            (event) => {
+                setOpenCart(false)
+            },
+            false
+        );
+        }
+        
+    },[numOfCartItems])
 
     return (
         <> 

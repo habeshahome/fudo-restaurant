@@ -44,7 +44,7 @@ const ProductCard: NextPage<Props> = ({product} : props) => {
     let cart:CartItem[]
     
     //reseting the storage
-    localStorage.clear()
+    //localStorage.clear()
  
     const add: void = () => {
         console.log("inside Add")

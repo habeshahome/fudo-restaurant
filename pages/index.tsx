@@ -146,20 +146,20 @@ const Home: NextPage<Props> = (props) => {
   }, []);
 
   return (
-    <div className="max-w-scroll-lg">
+    <div className="max-w-scroll-lg" id="fudo">
       <Head>
         <title> Fudo Restaurant </title>
         <meta name="description" content="Fudo Restaurant" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
        
-      <main className="grid grid-cols-1 gap-1">
+      <main className="grid grid-cols-1 gap-1" >
          
          <div>
            <Banner />
          </div>
          
-          <div className="grid grid-cols-3 gap-4 py-8">
+          <div  id="info-section" className="grid grid-cols-3 gap-4 py-8">
             {
               ContactSection
             }
