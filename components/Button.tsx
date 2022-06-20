@@ -6,12 +6,11 @@ interface Props{
 }
 
 const Button: NextPage<Props> = (props) => {
-
     const {title, url} = props
 
     return (
         <> 
-            <div className="border px-8 py-3 rounded-xl bg-yellow-500 border-yellow-500">
+            <div className="border px-8 py-3 rounded-xl shadow-lg bg-yellow-500 border-yellow-500 tracking-wide">
                 <p> { title } </p>     
             </div> 
         </>

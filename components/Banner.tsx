@@ -4,8 +4,6 @@ import Button from './Button'
 
 const Banner = () => {
   return (
- 
-
       <div className="grid grid-cols-12">
           <div className="z-10 row-span-full col-start-1 col-span-6 self-end">
               <div className="font-bold"> 
@@ -28,7 +26,6 @@ const Banner = () => {
             <Image src={SliderFoodImage} alt="" width="831px" height="500px" />
           </div>
       </div>
- 
   )
 }
 

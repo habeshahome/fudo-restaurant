@@ -1,8 +1,6 @@
 import {NextPage} from 'next'
 import Image from 'next/image'
 
-
-
 interface Props {
     id?: number
     slug: string;
@@ -14,11 +12,11 @@ interface Props {
 
 const InfoCard: NextPage<Props> = (props) => {
 
-    const {slug, title, description, icon} = props
+    const {id, slug, title, description, icon} = props
 
     return (
         <> 
-            <div className="flex flex-col justify-center pb-2 bg-white rounded-xl"> 
+            <div className={`flex flex-col shadow-lg justify-center pb-2  rounded-xl ${id == 1 ? 'bg-yellow-500': 'bg-white'}`}> 
                <div className="flex justify-center align-middle">
                    <div className="p-4 w-full flex justify-center align-middle">
                        <Image 
@@ -32,12 +30,10 @@ const InfoCard: NextPage<Props> = (props) => {
                    <div className=""> 
                         <h4 className="font-bold"> {description} </h4>
                     </div>
-
                     <div className=""> 
-                        <p> {title} COLOR</p> 
+                        <p> {title} </p> 
                     </div> 
                 </div>
-                
             </div> 
         </>
     )

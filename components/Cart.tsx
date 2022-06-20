@@ -34,49 +34,17 @@ const Cart = () => {
             <h2 className="text-center p-12"> Empty Cart </h2>
         )
     }
-    
 
     useEffect(() => {
-        
         console.log("Cart cart")
         console.log(cart)
-        
 
         setCart(JSON.parse(localStorage.getItem('cart')) || '[]')
-
     }, []);
-
-    /*
-    const getTotalSum = () => {
-        return cart.reduce(
-          (sum, { cost, quantity }) => sum + cost * quantity,
-          0
-        );
-      };
-    
-      const clearCart = () => {
-        setCart([]);
-      };
-     
-      const setQuantity = (product, amount) => {
-        const newCart = [...cart];
-        newCart.find(
-          (item) => item.name === product.name
-        ).quantity = amount;
-        setCart(newCart);
-      };
-    
-      const removeFromCart = (productToRemove) => {
-        setCart(
-          cart.filter((product) => product !== productToRemove)
-        );
-      };
-      */
-
       
     return (
         <div className="fixed z-40 right-96 top-20 w-96">
-        <div className="flex flex-col z-50 bg-white w-full rounded-xl shadow-md p-4"> 
+        <div className="flex flex-col z-50 bg-white w-full rounded-xl shadow-md p-8"> 
             <div className="flex flex-row justify-between py-4"> 
                 <div className="font-bold">
                     <h1> Cart </h1>
@@ -90,8 +58,13 @@ const Cart = () => {
                     cartItemsConfig 
                 }
             </div>
-            <div className="flex w-full">
-                <button className="btn btn-lg"> Checkout </button>
+            <div className="w-full flex flex-row text-white justify-between items-center rounded-full bg-yellow-500 py-4 px-8 mt-8">
+                <div> 
+                    <h3 className="font-medium"> Checkout </h3>
+                </div>
+                <div> 
+                   <h3> $ Total </h3>
+                </div>
             </div>
             
         </div>
@@ -113,7 +86,7 @@ export const CartItem: React.FC<Props> = (props) => {
 
     return (
         <>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between my-8">
                 <div className="flex w-32"> 
                     <Image src={Fries} alt="" width="60px" height="60px" />
                 </div>
@@ -140,7 +113,7 @@ export const CartItem: React.FC<Props> = (props) => {
                 </div>
             </div>
 
-            <div className="text-red-700 py-2">
+            <div className="text-red-700 pt-2 pb-4 border-b">
                 <p> remove </p>
             </div>
         </>

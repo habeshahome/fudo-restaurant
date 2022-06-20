@@ -74,10 +74,11 @@ const Home: NextPage<Props> = (props) => {
   const Category = props.categoryData.data
   //console.log(Category)
 
-  let ContactSection = Contact.map((info) => {
+  let ContactSection = Contact.map((info, index) => {
       return (
         <InfoCard 
-          key={info.id + info.slug} 
+          key={index + info.slug} 
+          id={index}
           slug={info.slug}
           title={info.title}
           description={info.description}
@@ -214,11 +215,7 @@ const Home: NextPage<Props> = (props) => {
          
       </main>
 
-      <footer className={styles.footer}>
-        <div className="py-4 text-xs text-gray-700 text-center w-full max-w-screen-lg"> 
-          <p> Copyright @ 2022 abcd. All Right Reserved. </p>
-        </div>
-      </footer>
+      
     </div>
   )
 }

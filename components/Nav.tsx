@@ -15,8 +15,9 @@ const Nav = () => {
 
     useEffect(()=> {
         //console.log(localStorage.getItem('numOfCartItems'))
-        setNumOfCartItems(localStorage.getItem('numOfCartItems'))
-    }, [])
+        let localCartNum = (JSON.parse(localStorage.getItem('cart')) || 0)
+        setNumOfCartItems(localCartNum.length)
+    })
 
     return (
         <> 
@@ -42,7 +43,7 @@ const Nav = () => {
             <div className="flex justify-end space-x-8">
                 <div>
                     <div className="indicator" onClick={() => setOpenCart(true)}>
-                        <span className="indicator-item badge badge-secondary">{ numOfCartItems }</span>
+                        <span className="indicator-item badge bg-yellow-500 border-0 shadow-sm">{ numOfCartItems? numOfCartItems : 0 }</span>
                         <div className="grid w-8 h-8 place-items-center overflow-hidden">
                             <Image src="/img/Cart.png" alt="Cart" width="64" height="64" />
                         </div>
