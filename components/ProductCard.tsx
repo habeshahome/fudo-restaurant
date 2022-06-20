@@ -43,27 +43,34 @@ const ProductCard: NextPage<Props> = ({product} : props) => {
     //console.log(product)
     let cart:CartItem[]
     
+    //reseting the storage
     localStorage.clear()
  
-    function add() {
+    const add: void = () => {
+        console.log("inside Add")
 
         const lc = localStorage.getItem('cart') || []
 
-        if(!lc){
+        if(typeof(lc) === "undefined" || lc.length === 0){
+            console.log("Cart Not Found in Local Storage!")
+            cart = [thisItem]
+        }
+        else{
+            console.log("Cart Found in Local Storage!")
 
             cart = JSON.parse(lc)
             console.log(cart)
-            cart = cart.map(findItem => {
+
+            let updatedCart = cart.map(findItem => {
                 if(findItem.id == id){
-                   
                     return { 
                             id: findItem.id,  
                             title: findItem.title,
                             price: findItem.price,
-                            qty: findItem.qty+1,
+                            qty: findItem.qty + 1,
                             image: findItem.image
                         }
-                }
+                    }
                 // return same item
                 return { 
                         id: findItem.id,  
@@ -71,13 +78,13 @@ const ProductCard: NextPage<Props> = ({product} : props) => {
                         price: findItem.price,
                         qty: findItem.qty+1,
                         image: findItem.image
-                    }
+                }
             })
-            cart.push()
-        }else {
-            cart = [thisItem]
+            cart = updatedCart
         }
-
+        
+        console.log("Writing Cart to Local Storage")
+        console.log(cart)
         localStorage.setItem('cart', JSON.stringify(cart))
     }
 

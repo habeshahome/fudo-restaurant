@@ -23,9 +23,11 @@ const Cart = () => {
             return (
                 <CartItem 
                     key={item.id}
-                    item={item.title}
-                    qty={item.qty}
+                    id={item.title}
+                    title={item.title}
                     price={item.price}
+                    qty={item.qty}
+                    image={item.image}
                 />
             )
         })
@@ -75,25 +77,27 @@ const Cart = () => {
 export default Cart
 
 interface Props {
-    item: string;
-    qty: number;
-    price: number;
+    id: string
+    title: string
+    price: number
+    qty: number
+    image: string
 }
 
 // setting up template for cart items 
 export const CartItem: React.FC<Props> = (props) => {
-    const {item, qty, price} = props;
+    const {id, title, price, qty, image} = props;
 
     return (
         <>
-        <div className="flex flex-row justify-between my-8">
+        <div className="flex flex-row justify-between my-4">
                 <div className="flex w-32"> 
-                    <Image src={Fries} alt="" width="60px" height="60px" />
+                    <Image src={image.replace("localhost", "54.169.31.224")} alt="" width="60px" height="60px" />
                 </div>
 
                 <div className="flex flex-col w-full pl-2"> 
                     <div className="pb-2">
-                        {item}
+                        <h3> {title} </h3>
                     </div>
                     
                     <div className="flex flex-row justify-between"> 
@@ -113,7 +117,7 @@ export const CartItem: React.FC<Props> = (props) => {
                 </div>
             </div>
 
-            <div className="text-red-700 pt-2 pb-4 border-b">
+            <div className="text-red-700 pt-1 pb-4 border-b">
                 <p> remove </p>
             </div>
         </>
