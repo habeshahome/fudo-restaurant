@@ -16,7 +16,7 @@ const Cart = () => {
     let localCart: CartItem[]
     let cartItemsConfig
 
-    if(typeof cart !== 'undefined' && !cart.includes('[]') , cart.length > 0 && cart !== null){
+    if(typeof cart !== 'undefined' && !cart.includes('[]') && cart.length > 0 && cart !== null){
         console.log("Cart Item detected")
         console.log(cart)
         cartItemsConfig =  cart.map((item, index) => {
