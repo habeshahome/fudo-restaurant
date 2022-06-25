@@ -141,9 +141,6 @@ const Home: NextPage<Props> = (props) => {
         )
     })
 
-  useEffect(() => {
-    localStorage.setItem("numOfCartItems", 5);
-  }, []);
 
   return (
     <div className="max-w-scroll-lg" id="fudo">

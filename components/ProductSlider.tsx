@@ -3,7 +3,7 @@ import ProductCard from './ProductCard'
 const ProductSlider = (props) => {
     const {products} = props
 
-    // configuring product items
+    //Configuring product items
     const ProductConfig = 
         products.map((product, index) => {
             return (

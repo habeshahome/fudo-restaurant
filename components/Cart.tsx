@@ -46,7 +46,7 @@ const Cart = () => {
       
     return (
         <div className="fixed z-40 right-96 top-20 w-96">
-        <div className="flex flex-col z-50 bg-white w-full rounded-xl shadow-md p-8"> 
+        <div className="flex flex-col z-50 bg-white w-full rounded-xl shadow-md p-8 overflow-x-scroll"> 
             <div className="flex flex-row justify-between py-4"> 
                 <div className="font-bold">
                     <h1> Cart </h1>

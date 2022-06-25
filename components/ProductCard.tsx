@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Button from './Button'
+import { CartItem } from './Cart';
 
 interface Product {
     id: string
@@ -18,7 +19,6 @@ interface Product {
 
 interface Props {
     product: Product
-    products: Product[]
     children?: React.ReactNode
 }
 
@@ -30,61 +30,74 @@ interface CartItem {
     image: string,
 }
 
-const ProductCard: NextPage<Props> = ({product} : props) => {
-    const {id, title, currency, price, image } = product
+const ProductCard = (props: Props) => {
+    let cart: CartItem[]
+    
+    const {id, title, currency, price, image } = props.product
+    const currentItem: CartItem = {
+                id: id, 
+                title: title, 
+                price: price, 
+                qty: 1, 
+                image: image } 
 
-    let thisItem: CartItem = {
-            id: id, 
-            title: title, 
-            price: price, 
-            qty: 1, 
-            image: image } 
-    
-    //console.log(product)
-    let cart:CartItem[]
-    
-    //reseting the storage
-    //localStorage.clear()
+    const addToCart = () => {
+        console.log("%c Inside addToCart function ", 'background: #222; color: #bada55')
+        console.log("Current Item = ", currentItem)
+        let isNewItem = true // if found just add the quantity only
+        
+        cart = JSON.parse(localStorage.getItem('cart')) || []
  
-    const add: void = () => {
-        console.log("inside Add")
 
-        const lc = localStorage.getItem('cart') || []
-
-        if(typeof(lc) === "undefined" || lc.length === 0){
+        if(typeof(cart) === "undefined" || cart.length === 0){
             console.log("Cart Not Found in Local Storage!")
-            cart = [thisItem]
+            cart = [currentItem]
         }
         else{
             console.log("Cart Found in Local Storage!")
 
-            cart = JSON.parse(lc)
-            console.log(cart)
+            let updatedCart: CartItem[] = cart.map(oldItem => {
+                
+                console.log("Checking if the Product Already Exist in Cart")
+                console.log("Current Item = ")
+                console.log(currentItem)
+                console.log("Old Item = ")
+                console.log(oldItem)
 
-            let updatedCart = cart.map(findItem => {
-                if(findItem.id == id){
+                if(oldItem.id === id && oldItem.title === title){
+                    console.log("Product found in Current Cart")
+                    console.log("Current Item Inside if()")
+                    console.log(oldItem)
+                    isNewItem = false
+
                     return { 
-                            id: findItem.id,  
-                            title: findItem.title,
-                            price: findItem.price,
-                            qty: findItem.qty + 1,
-                            image: findItem.image
+                            id: oldItem.id,  
+                            title: oldItem.title,
+                            price: oldItem.price,
+                            qty: oldItem.qty + 1,
+                            image: oldItem.image
                         }
+                    } 
+                    // return same item
+                    console.log("Returning Same Item")
+                    console.log(oldItem)
+                    
+                    return { 
+                            id: oldItem.id,  
+                            title: oldItem.title,
+                            price: oldItem.price,
+                            qty: oldItem.qty+1,
+                            image: oldItem.image
                     }
-                // return same item
-                return { 
-                        id: findItem.id,  
-                        title: findItem.title,
-                        price: findItem.price,
-                        qty: findItem.qty+1,
-                        image: findItem.image
-                }
+
             })
-            cart = updatedCart
+            if(isNewItem){
+                cart.push(currentItem)
+                console.log(updatedCart)
+            }else{
+                cart = updatedCart
+            }
         }
-        
-        console.log("Writing Cart to Local Storage")
-        console.log(cart)
         localStorage.setItem('cart', JSON.stringify(cart))
     }
 
@@ -110,7 +123,7 @@ const ProductCard: NextPage<Props> = ({product} : props) => {
                             <div> 
                                 <button 
                                     className="w-full flex justify-start mt-2"
-                                    onClick={() => add() }
+                                    onClick={() => addToCart() }
                                     >Add to cart
                                 </button>
                             </div>

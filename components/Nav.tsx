@@ -28,8 +28,8 @@ const Nav = () => {
             false
         );
         }
-        
-    },[numOfCartItems])
+         
+    })
 
     return (
         <> 
